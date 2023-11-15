@@ -56,6 +56,8 @@ function App() {
     };
 
     const readDataAndSetConsentPref = (data, dt) => {
+      window.utag.loader.ol = 0;
+      window.utag.loader.INIT();
       const groupObj = readCookieAndCreateObj('OptanonConsent');
       console.log("test readdata", groupObj, window.utag)
     };
