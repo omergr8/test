@@ -14,7 +14,7 @@ function App() {
   };
 
   useEffect(() => {
-
+    console.log("test this", window.OneTrust, window.OneTrust?.isReady)
     window.addEventListener('consent.onetrust', readDataAndSetConsentPref)
 
     // Cleanup the event listener when the component unmounts
