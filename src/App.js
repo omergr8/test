@@ -14,17 +14,8 @@ function App() {
   };
 
   useEffect(() => {
-    const addListener = (element, event, callback) => {
-      if (element.addEventListener) {
-        element.addEventListener(event, callback, false);
-      } else if (element.attachEvent) {
-        element.attachEvent('on' + event, callback);
-      }
-    };
 
-
-
-    addListener(window, 'consent.onetrust', readDataAndSetConsentPref);
+    window.addEventListener('consent.onetrust', readDataAndSetConsentPref)
 
     // Cleanup the event listener when the component unmounts
     return () => {
