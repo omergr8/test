@@ -13,7 +13,7 @@ function App() {
       }
     };
 
-    const readDataAndSetConsentPref = (data) => {
+    const readDataAndSetConsentPref = (data, dt) => {
       // var consGroupNumber;
       // const consent = data.detail;
       // window.utag.gdpr.setAllCategories(false);
@@ -32,7 +32,7 @@ function App() {
       //       break;
       //   }
       // }
-      console.log("i am read data first", data.detail, window.utag)
+      console.log("i am read data first", data.detail,data, dt, window)
 
       // if (window.utag.gdpr.getSelectedCategories().length) {
       //   console.log("i am read data first if")
