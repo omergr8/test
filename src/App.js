@@ -13,7 +13,6 @@ function App() {
   // Function to perform actions based on accepted cookies
   const performActionsForCookies = (cookieIds) => {
     cookieIds.forEach((element) => {
-      // Use a switch statement for better readability
       switch (element) {
         case "C0001":
         case "C0002":
