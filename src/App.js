@@ -17,7 +17,9 @@ function App() {
       switch (element) {
         case "C0001":
         case "C0002":
+        case "C0003":
         case "C0004":
+        case "C0005":
           console.log(`Accepted ${cookieGroup[element]} cookies`);
           // Perform necessary actions based on the accepted cookie group
           // Add more cases as needed
