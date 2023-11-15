@@ -13,51 +13,13 @@ function App() {
       }
     };
 
-    const getCookie = (cookie_name) => {
-      const name = cookie_name + '=';
-      const decodedCookie = decodeURIComponent(document.cookie);
-      const ca = decodedCookie.split(';');
-      for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return '';
-    };
-
-    const readCookieAndCreateObj = (cookie_name) => {
-      let groups = '';
-      let groupArr = [];
-      let cookie = '';
-      let groupObj = {};
-      let elem = [];
-      cookie = getCookie(cookie_name);
-      console.log("test readCookieAndCreateObj", cookie, cookie_name)
-      if (cookie && cookie !== '') {
-        cookie = cookie.split('&');
-      } else {
-        return '';
-      }
-      for (let i = 0; i < cookie.length; i++) {
-        if (/groups/gi.test(cookie[i])) {
-          groups = cookie[i].split('=')[1].replace(/0_/g, '');
-        }
-      }
-      groupArr = groups.split(',');
-      for (let j = 0; j < groupArr.length; j++) {
-        elem = groupArr[j].split(':');
-        groupObj[elem[0]] = elem[1];
-      }
-      return groupObj;
-    };
-
     const readDataAndSetConsentPref = (data, dt) => {
-      const groupObj = readCookieAndCreateObj('OptanonConsent');
-      console.log("test readdata", groupObj, data)
+      console.log("i am read data first", data.detail,data, dt, window)
+
+      // if (window.utag.gdpr.getSelectedCategories().length) {
+      //   console.log("i am read data first if")
+      //   window.utag.view(window.utag.data);
+      // }
     };
 
     addListener(window, 'consent.onetrust', readDataAndSetConsentPref);
