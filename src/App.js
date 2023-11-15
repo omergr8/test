@@ -4,49 +4,104 @@ import './App.css';
 
 function App() {
 
+  // const oneTrustTagIdToTealiumTemplateIdConfig = {
+  //   "81878": "7110", // e.g.: Google Analytics
+  //   "81879": "19004", // e.g.: Adobe Analytics
+  //   "81876": "2011", // e.g.: BlueKai
+  //   "106": "13099", // e.g.: Maxymiser
+  // };
+  // End Config
+
+  const resetLoader = (u) => {
+    console.log("test reset loader",u)
+    // for (const uid in u.loader.cfg) {
+    //   if (uid !== '18') {
+    //     u.loader.cfg[uid].load = 0;
+    //   }
+    // }
+  };
+
+  const addListener = (element, event, callback) => {
+    if (element.addEventListener) {
+      element.addEventListener(event, callback, false);
+    } else if (element.attachEvent) {
+      element.attachEvent('on' + event, callback);
+    }
+  };
+
+  const getCookie = (cookie_name) => {
+    const name = cookie_name + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
+  };
+
+  const readCookieAndCreateObj = (cookie_name) => {
+    let groups = '';
+    let groupArr = [];
+    let cookie = '';
+    let groupObj = {};
+    let elem = [];
+    cookie = getCookie(cookie_name);
+    console.log("test readCookieAndCreateObj", cookie_name, cookie)
+    if (cookie && cookie !== '') {
+      cookie = cookie.split('&');
+    } else {
+      return '';
+    }
+    for (let i = 0; i < cookie.length; i++) {
+      if (/groups/gi.test(cookie[i])) {
+        groups = cookie[i].split('=')[1].replace(/0_/g, '');
+      }
+    }
+    groupArr = groups.split(',');
+    for (let j = 0; j < groupArr.length; j++) {
+      elem = groupArr[j].split(':');
+      groupObj[elem[0]] = elem[1];
+    }
+    return groupObj;
+  };
+
+  const compareIds = () => {
+    const groupObj = readCookieAndCreateObj('OptanonConsent');
+    console.log("test compareids", groupObj)
+    // if (groupObj === '') {
+    //   return;
+    // }
+    // for (const oneTrustTagId in groupObj) {
+    //   if (groupObj[oneTrustTagId] === '1') {
+    //     for (const key in window.utag.loader.cfg) {
+    //       if (oneTrustTagIdToTealiumTemplateIdConfig[oneTrustTagId] == window.utag.loader.cfg[key].tid) {
+    //         window.utag.loader.cfg[key].load = 1;
+    //       }
+    //     }
+    //   }
+    // }
+  };
+
+  const readCookieAndSetConsentPref = () => {
+    resetLoader(window.utag);
+    compareIds();
+  };
+
   useEffect(() => {
-    const addListener = (element, event, callback) => {
-      if (element.addEventListener) {
-        element.addEventListener(event, callback, false);
-      } else if (element.attachEvent) {
-        element.attachEvent('on' + event, callback);
-      }
-    };
-
-    const readDataAndSetConsentPref = (data, dt) => {
-      var consGroupNumber;
-      const consent = data.detail;
-      // window.utag.gdpr.setAllCategories(false);
-
-      for (let i = 0; i < consent.length; i++) {
-        consGroupNumber = consent[i].replace('0_', '');
-        console.log("test 55", consGroupNumber)
-        // switch (consGroupNumber) {
-        //   case '112': // Analytics
-        //     window.utag.gdpr.setPreferencesValues({ 1: 1 });
-        //     break;
-        //   case '3': // Display Ad
-        //     window.utag.gdpr.setPreferencesValues({ 3: 1 });
-        //     break;
-        //   case '4': // Personalization
-        //     window.utag.gdpr.setPreferencesValues({ 6: 1 });
-        //     break;
-        // }
-      }
-      console.log("i am read data first", data.detail,data, dt, window)
-
-      // if (window.utag.gdpr.getSelectedCategories().length) {
-      //   console.log("i am read data first if")
-      //   window.utag.view(window.utag.data);
-      // }
-    };
-
-    addListener(window, 'consent.onetrust', readDataAndSetConsentPref);
+    resetLoader(window.utag);
+    compareIds();
+    addListener(window, 'consent.onetrust', readCookieAndSetConsentPref);
 
     // Cleanup the event listener when the component unmounts
     return () => {
-      // Assuming you need to remove the same event listener
-      window.removeEventListener('consent.onetrust', readDataAndSetConsentPref);
+      window.removeEventListener('consent.onetrust', readCookieAndSetConsentPref);
     };
   }, []); 
   return (
