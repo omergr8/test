@@ -48,7 +48,7 @@ function App() {
     return () => {
       window.removeEventListener("consent.onetrust", readDataAndSetConsentPref);
     };
-  }, []);
+  });
 
   return (
     <div className="App">
