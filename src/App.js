@@ -14,25 +14,26 @@ function App() {
     };
 
     const readDataAndSetConsentPref = (data, dt) => {
-      // var consGroupNumber;
-      // const consent = data.detail;
+      var consGroupNumber;
+      const consent = data.detail;
       // window.utag.gdpr.setAllCategories(false);
 
-      // for (let i = 0; i < consent.length; i++) {
-      //   consGroupNumber = consent[i].replace('0_', '');
-      //   switch (consGroupNumber) {
-      //     case '112': // Analytics
-      //       window.utag.gdpr.setPreferencesValues({ 1: 1 });
-      //       break;
-      //     case '3': // Display Ad
-      //       window.utag.gdpr.setPreferencesValues({ 3: 1 });
-      //       break;
-      //     case '4': // Personalization
-      //       window.utag.gdpr.setPreferencesValues({ 6: 1 });
-      //       break;
-      //   }
-      // }
-      console.log("i am read data first", data.detail,data, dt, window, 'pop', data.target.OneTrust, data.target)
+      for (let i = 0; i < consent.length; i++) {
+        consGroupNumber = consent[i].replace('0_', '');
+        console.log("test 55", consGroupNumber)
+        // switch (consGroupNumber) {
+        //   case '112': // Analytics
+        //     window.utag.gdpr.setPreferencesValues({ 1: 1 });
+        //     break;
+        //   case '3': // Display Ad
+        //     window.utag.gdpr.setPreferencesValues({ 3: 1 });
+        //     break;
+        //   case '4': // Personalization
+        //     window.utag.gdpr.setPreferencesValues({ 6: 1 });
+        //     break;
+        // }
+      }
+      console.log("i am read data first", data.detail,data, dt, window)
 
       // if (window.utag.gdpr.getSelectedCategories().length) {
       //   console.log("i am read data first if")
