@@ -16,7 +16,7 @@ function App() {
     const readDataAndSetConsentPref = (data) => {
       // var consGroupNumber;
       // const consent = data.detail;
-      window.utag.gdpr.setAllCategories(false);
+      // window.utag.gdpr.setAllCategories(false);
 
       // for (let i = 0; i < consent.length; i++) {
       //   consGroupNumber = consent[i].replace('0_', '');
@@ -32,12 +32,12 @@ function App() {
       //       break;
       //   }
       // }
-      console.log("i am read data first")
+      console.log("i am read data first", data.detail, window.utag)
 
-      if (window.utag.gdpr.getSelectedCategories().length) {
-        console.log("i am read data first if")
-        window.utag.view(window.utag.data);
-      }
+      // if (window.utag.gdpr.getSelectedCategories().length) {
+      //   console.log("i am read data first if")
+      //   window.utag.view(window.utag.data);
+      // }
     };
 
     addListener(window, 'consent.onetrust', readDataAndSetConsentPref);
