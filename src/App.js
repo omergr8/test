@@ -6,6 +6,9 @@ function App() {
 
   const readDataAndSetConsentPref = (data, dt) => {
     console.log("i am read data first", data.detail,data, dt, window,'pop',window.OneTrust, window.OneTrust?.isReady)
+    if(window.OneTrust){
+      console.log("i am read data second", data.detail)
+    }
 
     // if (window.utag.gdpr.getSelectedCategories().length) {
     //   console.log("i am read data first if")
