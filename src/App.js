@@ -31,15 +31,6 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Helmet>
-        <script
-          src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
-          type="text/javascript"
-          charset="UTF-8"
-          data-domain-script="64d371f7-dc2c-4262-8a2f-51c3110fec45-test"
-        ></script>
-        <script type="text/javascript">function OptanonWrapper() {}</script>
-      </Helmet>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -54,6 +45,15 @@ function App() {
           Learn React
         </a>
       </header>
+      <Helmet>
+        <script
+          src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          type="text/javascript"
+          charset="UTF-8"
+          data-domain-script="64d371f7-dc2c-4262-8a2f-51c3110fec45-test"
+        />
+        <script type="text/javascript">{`function OptanonWrapper() {}`}</script>
+      </Helmet>
     </div>
   );
 }
