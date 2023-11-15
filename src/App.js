@@ -14,8 +14,8 @@ function App() {
     };
 
     const readDataAndSetConsentPref = (data) => {
-      var consGroupNumber;
-      const consent = data.detail;
+      // var consGroupNumber;
+      // const consent = data.detail;
       window.utag.gdpr.setAllCategories(false);
 
       // for (let i = 0; i < consent.length; i++) {
