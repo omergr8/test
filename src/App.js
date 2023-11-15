@@ -4,6 +4,15 @@ import './App.css';
 
 function App() {
 
+  const readDataAndSetConsentPref = (data, dt) => {
+    console.log("i am read data first", data.detail,data, dt, window)
+
+    // if (window.utag.gdpr.getSelectedCategories().length) {
+    //   console.log("i am read data first if")
+    //   window.utag.view(window.utag.data);
+    // }
+  };
+
   useEffect(() => {
     const addListener = (element, event, callback) => {
       if (element.addEventListener) {
@@ -13,14 +22,7 @@ function App() {
       }
     };
 
-    const readDataAndSetConsentPref = (data, dt) => {
-      console.log("i am read data first", data.detail,data, dt, window)
 
-      // if (window.utag.gdpr.getSelectedCategories().length) {
-      //   console.log("i am read data first if")
-      //   window.utag.view(window.utag.data);
-      // }
-    };
 
     addListener(window, 'consent.onetrust', readDataAndSetConsentPref);
 
