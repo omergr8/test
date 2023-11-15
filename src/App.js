@@ -32,7 +32,7 @@ function App() {
       //       break;
       //   }
       // }
-      console.log("i am read data first", data.detail,data, dt, window)
+      console.log("i am read data first", data.detail,data, dt, window, 'pop', data.target.OneTrust, data.target)
 
       // if (window.utag.gdpr.getSelectedCategories().length) {
       //   console.log("i am read data first if")
