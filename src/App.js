@@ -57,7 +57,7 @@ function App() {
 
     const readDataAndSetConsentPref = (data, dt) => {
       const groupObj = readCookieAndCreateObj('OptanonConsent');
-      console.log("test readdata", groupObj)
+      console.log("test readdata", groupObj, window.utag)
     };
 
     addListener(window, 'consent.onetrust', readDataAndSetConsentPref);
